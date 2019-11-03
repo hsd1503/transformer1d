@@ -35,7 +35,7 @@ class Transformer1d(nn.Module):
         Y: (n_samples)
         
     Output:
-        out: (n_samples)
+        out: (n_samples, n_classes)
         
     Pararmetes:
         
