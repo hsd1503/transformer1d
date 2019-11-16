@@ -31,7 +31,7 @@ class Transformer1d(nn.Module):
     """
     
     Input:
-        X: (n_length, n_samples, n_channel)
+        X: (n_samples, n_channel, n_length)
         Y: (n_samples)
         
     Output:
@@ -66,7 +66,10 @@ class Transformer1d(nn.Module):
         
         out = x
         if self.verbose:
-            print('input', out.shape)
+            print('input (n_samples, n_channel, n_length)', out.shape)
+        out = out.permute(2, 0, 1)
+        if self.verbose:
+            print('transpose (n_length, n_samples, n_channel)', out.shape)
 
         out = self.transformer_encoder(out)
         if self.verbose:
